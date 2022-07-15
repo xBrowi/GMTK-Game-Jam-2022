@@ -10,6 +10,10 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3;
+    public float rotationSpeed;
+
+    float x;
+    float z;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -21,15 +25,17 @@ public class PlayerMovement : MonoBehaviour
     public float turnSmoothTime = 1f;
     float turnSmoothVelocity;
 
-    bool jumpKeyWasPressed = false;
-
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
     }
     void Update()
     {
+        x = Input.GetAxisRaw("Horizontal");
+        z = Input.GetAxis("Vertical");
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
+
+        velocity = transform.TransformDirection(Vector3.forward) * speed * z + new Vector3(0f, velocity.y, 0f); ;
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
@@ -41,24 +47,14 @@ public class PlayerMovement : MonoBehaviour
             velocity.y = -2f;
         }
 
-        float x = Input.GetAxisRaw("Horizontal");
-        float z = Input.GetAxisRaw("Vertical");
-
-        Vector3 direction = new Vector3(x, 0f, z).normalized;
-
-        if (direction.magnitude >= 0.1f)
-        {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            controller.Move(moveDir.normalized * speed * Time.deltaTime);
-        }
-        
 
         velocity.y += gravity * Time.deltaTime;
 
+    }
+
+    private void FixedUpdate()
+    {
+        transform.Rotate(new Vector3(0f, x * rotationSpeed, 0f));
         controller.Move(velocity * Time.deltaTime);
     }
 }

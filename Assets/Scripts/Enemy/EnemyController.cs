@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public GameObject head;
+    public GameObject body;
+
     private EnemyState currentState;
 
     // Start is called before the first frame update

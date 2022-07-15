@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed = 12f;
     public float gravity = -9.81f;
+    public float jumpHeight = 3;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -20,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     public float turnSmoothTime = 1f;
     float turnSmoothVelocity;
 
+    bool jumpKeyWasPressed = false;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -28,7 +31,12 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-        if(isGrounded && velocity.y < 0)
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+        }
+
+        if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }

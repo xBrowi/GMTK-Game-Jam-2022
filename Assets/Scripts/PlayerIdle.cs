@@ -14,7 +14,6 @@ public class PlayerIdle : PlayerState
 
 
     [SerializeField] Vector3 velocity;
-    public bool isGrounded;
 
     public float turnSmoothTime = 1f;
     float turnSmoothVelocity;
@@ -39,17 +38,15 @@ public class PlayerIdle : PlayerState
     {
         x = Input.GetAxisRaw("Horizontal");
         z = Input.GetAxis("Vertical");
-        if (playerController.groundCheck != null) {
-            isGrounded = Physics.CheckSphere(playerController.groundCheck.transform.position, playerController.groundDistance, playerController.groundMask);
-        }
-        velocity = playerController.player.transform.TransformDirection(Vector3.forward) * playerController.speed * z + new Vector3(0f, velocity.y, 0f); ;
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        velocity = playerController.transform.TransformDirection(Vector3.left) * playerController.speed * z + new Vector3(0f, velocity.y, 0f); ;
+
+        if (Input.GetButtonDown("Jump") && playerController.isGrounded)
         {
             velocity.y = Mathf.Sqrt(playerController.jumpHeight * -2 * playerController.gravity);
         }
 
-        if (isGrounded && velocity.y < 0)
+        if (playerController.isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
@@ -57,7 +54,7 @@ public class PlayerIdle : PlayerState
 
         velocity.y += playerController.gravity * Time.deltaTime;
 
-        playerController.player.transform.Rotate(new Vector3(0f, x * playerController.rotationSpeed, 0f));
+        playerController.transform.Rotate(new Vector3(0f, x * playerController.rotationSpeed, 0f));
         playerController.controller.Move(velocity * Time.deltaTime);
 
         // start dashing

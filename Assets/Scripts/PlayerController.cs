@@ -6,7 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     private PlayerState currentState;
     public CharacterController controller;
-    public GameObject player;
+
+    public GameObject wheelFrontLeft;
+    public GameObject wheelFrontRight;
+    public GameObject wheelBackLeft;
+    public GameObject wheelBackRight;
 
     // Player movement variables
     public float groundDistance = 1f;
@@ -14,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float speed = 12f;
     public float gravity = -9.81f;
     public float jumpHeight = 3;
+    public float wheelRotationSpeed;
+
     public GameObject groundCheck;
     public LayerMask groundMask;
 
@@ -23,15 +29,26 @@ public class PlayerController : MonoBehaviour
 
     public int dashCooldown = 0;
 
-    private 
+    public bool isGrounded = false;
+
+
+    private Rigidbody rb;
+
     void Start()
     {
         currentState = new PlayerIdle(this);
         currentState.OnStateEnter();
         controller = GetComponent<CharacterController>();
+        
     }
     void Update()
     {
+        if (groundCheck != null)
+        {
+            isGrounded = Physics.CheckSphere(groundCheck.transform.position, groundDistance, groundMask);
+        }
+
+
         if (currentState != null)
         {
             currentState.OnStateUpdate();
@@ -42,7 +59,18 @@ public class PlayerController : MonoBehaviour
             dashCooldown--;
         }
 
+        RotateWheel(wheelBackLeft);
+        RotateWheel(wheelBackRight);
+        RotateWheel(wheelFrontLeft);
+        RotateWheel(wheelFrontRight);
+
     }
+
+    private void RotateWheel(GameObject wheel)
+    {
+        wheel.transform.Rotate(new Vector3(0, 0, Time.deltaTime * wheelRotationSpeed * controller.velocity.magnitude), Space.Self);
+    }
+
     public void ChangeState(PlayerState newState)
     {
         currentState.OnStateExit();

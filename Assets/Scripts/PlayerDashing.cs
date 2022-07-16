@@ -17,7 +17,7 @@ public class PlayerDashing : PlayerState
     {
         Dashing = playerController.dashTime;
 
-        velocity = playerController.player.transform.TransformDirection(Vector3.forward) * playerController.dashSpeed;
+        velocity = playerController.transform.TransformDirection(Vector3.left) * playerController.dashSpeed;
 
         dashTrail.GetComponent<TrailRenderer>().emitting = true;
 

@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public float accelleration = 8f;
     public float maxSpeed;
     public float sidewaysDrag;
+    public float forwardsDrag;
 
     public float jumpForce;
     public float wheelRotationSpeed;
@@ -78,7 +79,13 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
+    void FixedUpdate()
+    {
+        if (currentState != null)
+        {
+            currentState.OnStateFixedUpdate();
+        }
+    }
     private void RotateWheel(GameObject wheel)
     {
         wheel.transform.Rotate(new Vector3(0, 0, Time.deltaTime * wheelRotationSpeed * rb.velocity.magnitude), Space.Self);

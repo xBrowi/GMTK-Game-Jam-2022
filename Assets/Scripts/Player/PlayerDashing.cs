@@ -48,4 +48,8 @@ public class PlayerDashing : PlayerState
 
         playerController.rb.velocity = dashVector;
     }
+
+    public override void OnStateFixedUpdate()
+    {
+    }
 }

@@ -10,6 +10,8 @@ public class PlayerDriving : PlayerState
 
     public float turnSmoothTime = 1f;
 
+    float x;
+    float z;
 
 
     public PlayerDriving(PlayerController playerController) : base(playerController)
@@ -30,8 +32,8 @@ public class PlayerDriving : PlayerState
 
     public override void OnStateUpdate()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        x = Input.GetAxis("Horizontal");
+        z = Input.GetAxis("Vertical");
 
         if (x < 0)
         {
@@ -49,14 +51,13 @@ public class PlayerDriving : PlayerState
             playerController.animator.SetBool("isTurningRight", false);
         }
 
-        if (playerController.isGrounded) { 
-            playerController.rb.AddRelativeForce(-z * playerController.accelleration, 0, 0, ForceMode.Acceleration);
+        if (playerController.isGrounded) {
+            acceleration();
         }
 
         if (Input.GetButtonDown("Jump") && playerController.isGrounded)
         {
-            playerController.rb.velocity = new Vector3(playerController.rb.velocity.x, 0, playerController.rb.velocity.z);
-            playerController.rb.AddForce(0, playerController.jumpForce, 0, ForceMode.VelocityChange);
+            jump();
         }
 
 
@@ -68,16 +69,35 @@ public class PlayerDriving : PlayerState
             playerController.ChangeState(new PlayerDashing(playerController));
         }
 
-        // sideways "drag"
+        
+    }
+    public override void OnStateFixedUpdate()
+    {
+        // drag
         if (playerController.isGrounded)
         {
+            // sideways
             Vector3 locVel = playerController.rb.transform.InverseTransformDirection(playerController.rb.velocity);
-            int isNegative = Math.Sign(locVel.z);
-            locVel.z += isNegative * playerController.sidewaysDrag * Time.deltaTime;
-
-            if (isNegative == -1 && locVel.z > 0) locVel.z = 0;
-            if (isNegative == 1 && locVel.z < 0) locVel.z = 0;
+            locVel.z *= playerController.sidewaysDrag;
+            if (locVel.x < playerController.maxSpeed)
+            {
+                locVel.x *= playerController.forwardsDrag;
+            }
             playerController.rb.velocity = playerController.rb.transform.TransformDirection(locVel);
+
         }
+
+
+    }
+
+    void jump()
+    {
+        playerController.rb.velocity = new Vector3(playerController.rb.velocity.x, 0, playerController.rb.velocity.z);
+        playerController.rb.AddForce(0, playerController.jumpForce, 0, ForceMode.VelocityChange);
+    }
+
+    void acceleration()
+    {
+        playerController.rb.AddRelativeForce(-z * playerController.accelleration, 0, 0, ForceMode.Acceleration);
     }
 }

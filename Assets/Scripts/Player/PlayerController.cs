@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float maxSpeed;
     public float sidewaysDrag;
     public float forwardsDrag;
+    float x;
+    float z;
 
     public float jumpForce;
     public float wheelRotationSpeed;
@@ -50,6 +52,10 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
+        if (currentState.GetType() == typeof(PlayerDriving) || currentState.GetType() == typeof(PlayerAttacking))
+        {
+            movementUpdate();
+        }
         // Speed Limit
         if (rb.velocity.magnitude > maxSpeed)
         {
@@ -85,15 +91,85 @@ public class PlayerController : MonoBehaviour
         {
             currentState.OnStateFixedUpdate();
         }
+
+        if (currentState.GetType() == typeof(PlayerDriving) || currentState.GetType() == typeof(PlayerAttacking))
+        {
+            movementFixedUpdate();
+        }
     }
     private void RotateWheel(GameObject wheel)
     {
         wheel.transform.Rotate(new Vector3(0, 0, Time.deltaTime * wheelRotationSpeed * rb.velocity.magnitude), Space.Self);
     }
 
-    private void movement ()
+    private void movementUpdate ()
     {
+        x = Input.GetAxis("Horizontal");
+        z = Input.GetAxis("Vertical");
 
+        if (x < 0)
+        {
+            animator.SetBool("isTurningLeft", true);
+            animator.SetBool("isTurningRight", false);
+
+        }
+        else if (x > 0)
+        {
+            animator.SetBool("isTurningRight", true);
+            animator.SetBool("isTurningLeft", false);
+        }
+        else
+        {
+            animator.SetBool("isTurningLeft", false);
+            animator.SetBool("isTurningRight", false);
+        }
+
+        if (isGrounded)
+        {
+            acceleration();
+        }
+
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            jump();
+        }
+
+
+        transform.Rotate(new Vector3(0f, x * rotationSpeed, 0f));
+
+        // start dashing
+        if (Input.GetButtonDown("Fire3") && dashCooldown <= 0)
+        {
+            ChangeState(new PlayerDashing(this));
+        }
+
+    }
+    void jump()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+        rb.AddForce(0, jumpForce, 0, ForceMode.VelocityChange);
+    }
+    void acceleration()
+    {
+        rb.AddRelativeForce(-z * accelleration, 0, 0, ForceMode.Acceleration);
+    }
+
+    void movementFixedUpdate()
+    {
+        // drag
+        if (isGrounded)
+        {
+            // sideways
+            Vector3 locVel = rb.transform.InverseTransformDirection(rb.velocity);
+            locVel.z *= sidewaysDrag;
+
+            // forwards
+            if (locVel.x < maxSpeed)
+            {
+                locVel.x *= forwardsDrag;
+            }
+            rb.velocity = rb.transform.TransformDirection(locVel);
+        }
     }
 
     public void ChangeState(PlayerState newState)

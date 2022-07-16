@@ -19,7 +19,7 @@ public class DiceController : MonoBehaviour
     public float enemySpawnDistanceFromDice;
 
     private Rigidbody rb;
-    private ParticleSystem particleSystem;
+    private new ParticleSystem particleSystem;
 
     private bool isRolling = false;
     private bool enemiesSpawned = false;

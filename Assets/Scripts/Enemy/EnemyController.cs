@@ -12,11 +12,16 @@ public class EnemyController : MonoBehaviour
 
     private EnemyState currentState;
 
+    public Animator animator;
+    public Collider bodyCollider;
+
+
     // Start is called before the first frame update
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
-        currentState = new EnemyRolling(this);
+        animator = GetComponent<Animator>();
+        currentState = new EnemySpawn(this);
         currentState.OnStateEnter();
     }
 

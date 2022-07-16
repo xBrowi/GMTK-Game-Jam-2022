@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayerAttacking : PlayerState
 {
 
-    float attackCooldown;
-
     public PlayerAttacking(PlayerController playerController) : base(playerController)
     {
         this.playerController = playerController;
@@ -18,20 +16,16 @@ public class PlayerAttacking : PlayerState
         playerController.playerAnimator.SetBool("isTurningLeft", false);
         playerController.playerAnimator.SetBool("isTurningRight", false);
         playerController.playerAnimator.SetBool("isAttacking", true);
-        attackCooldown = playerController.attackCooldownMax;
-
     }
+
     public override void OnStateExit()
     {
         playerController.playerAnimator.SetBool("isAttacking", false);
+        playerController.attackCooldown = playerController.attackCooldownMax;
     }
     public override void OnStateUpdate()
     {
-        attackCooldown -= Time.deltaTime;
-        if (attackCooldown <= 0)
-        {
-            playerController.ChangeState(new PlayerDriving(playerController));
-        }
+
     }
     public override void OnStateFixedUpdate()
     {

@@ -11,16 +11,25 @@ public class DiceController : MonoBehaviour
     public Transform front;
     public Transform back;
 
+
+    public EnemyController enemyPrefab;
+
     public float stoppingAngularVelocity;
     public float stoppingVelocity;
+    public float enemySpawnDistanceFromDice;
 
     private Rigidbody rb;
+    private ParticleSystem particleSystem;
+
     private bool isRolling = false;
+    private bool enemiesSpawned = false;
+    private float selfDestructTimer = 3;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        particleSystem = GetComponent<ParticleSystem>();
         Spin();
     }
 
@@ -67,6 +76,47 @@ public class DiceController : MonoBehaviour
 
             Debug.Log($"Dice landed on a {rollResult}!");
             isRolling = false;
+
+            SpawnEnemies(rollResult);
         }
+
+        if (enemiesSpawned == true)
+        {
+            selfDestructTimer -= Time.deltaTime;
+
+            if (selfDestructTimer < 0)
+            {
+                Destroy(this.gameObject);
+            }
+        }
+
     }
+
+
+    private void SpawnEnemies(int amount)
+    {
+        particleSystem.Play();
+        GetComponent<Collider>().enabled = false;
+        rb.useGravity = false;
+        rb.velocity = Vector3.zero;
+        
+
+        for (int i = 0; i < amount; i++)
+        {
+            EnemyController ec = Instantiate(enemyPrefab);
+
+            if (i == 0)
+            {
+                ec.transform.position = transform.position;
+            }
+            else
+            {
+                ec.transform.position = Quaternion.Euler(0, i * 72, 0) * Vector3.forward * enemySpawnDistanceFromDice;
+            }
+        }
+
+        enemiesSpawned = true;
+    }
+
+
 }

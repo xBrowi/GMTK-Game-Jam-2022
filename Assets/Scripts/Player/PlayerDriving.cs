@@ -37,6 +37,7 @@ public class PlayerDriving : PlayerState
         // start attacking
         if (Input.GetMouseButtonDown(0)) 
         {
+            Debug.Log("Mouse button pressed");
             playerController.ChangeState(new PlayerAttacking(playerController));
         }
     }

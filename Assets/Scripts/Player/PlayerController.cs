@@ -35,7 +35,9 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public float dashCooldown = 0;
-
+    [HideInInspector]
+    public float attackCooldown = 0;
+    
     [HideInInspector]
     public bool isGrounded = false;
 
@@ -89,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
         // Cooldowns
         dashCooldown -= Time.deltaTime;
-
+        attackCooldown -= Time.deltaTime;
 
     }
     void FixedUpdate()
@@ -180,9 +182,23 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeState(PlayerState newState)
     {
+        if(newState.GetType() == currentState.GetType())
+        {
+            Debug.Log("Didn't change state because new state = old state");
+            return;
+        }
+
         Debug.Log($"Change state from {currentState.ToString()} to {newState.ToString()}");
         currentState.OnStateExit();
         currentState = newState;
         newState.OnStateEnter();
+    }
+
+    /// <summary>
+    /// This is called when the end of the attack anim is reached
+    /// </summary>
+    public void OnAttackAnimationFinished()
+    {
+        ChangeState(new PlayerDriving(this));
     }
 }

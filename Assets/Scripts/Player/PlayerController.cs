@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     public float dashTime;
     public float dashSpeed;
 
+    public float attackCooldownMax;
+
     [HideInInspector]
     public float dashCooldown = 0;
 
@@ -41,14 +43,14 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
 
     [HideInInspector]
-    public Animator animator;
+    public Animator playerAnimator;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
+        playerAnimator = GetComponent<Animator>();
         currentState = new PlayerDriving(this);
-        currentState.OnStateEnter();        
+        currentState.OnStateEnter();
     }
     void Update()
     {
@@ -80,6 +82,11 @@ public class PlayerController : MonoBehaviour
         RotateWheel(wheelFrontLeft);
         RotateWheel(wheelFrontRight);
 
+
+        TurnWheel(wheelFrontLeft);
+        TurnWheel(wheelFrontRight);
+
+
         // Cooldowns
         dashCooldown -= Time.deltaTime;
 
@@ -102,26 +109,31 @@ public class PlayerController : MonoBehaviour
         wheel.transform.Rotate(new Vector3(0, 0, Time.deltaTime * wheelRotationSpeed * rb.velocity.magnitude), Space.Self);
     }
 
+    private void TurnWheel(GameObject wheel)
+    {
+        wheel.transform.localEulerAngles = new Vector3(0, 30*x, wheel.transform.rotation.eulerAngles.z);
+    }
+
     private void movementUpdate ()
     {
         x = Input.GetAxis("Horizontal");
         z = Input.GetAxis("Vertical");
 
-        if (x < 0)
+        if (x < -0.5)
         {
-            animator.SetBool("isTurningLeft", true);
-            animator.SetBool("isTurningRight", false);
+            playerAnimator.SetBool("isTurningLeft", true);
+            playerAnimator.SetBool("isTurningRight", false);
 
         }
-        else if (x > 0)
+        else if (x > 0.5)
         {
-            animator.SetBool("isTurningRight", true);
-            animator.SetBool("isTurningLeft", false);
+            playerAnimator.SetBool("isTurningRight", true);
+            playerAnimator.SetBool("isTurningLeft", false);
         }
         else
         {
-            animator.SetBool("isTurningLeft", false);
-            animator.SetBool("isTurningRight", false);
+            playerAnimator.SetBool("isTurningLeft", false);
+            playerAnimator.SetBool("isTurningRight", false);
         }
 
         if (isGrounded)
@@ -136,12 +148,6 @@ public class PlayerController : MonoBehaviour
 
 
         transform.Rotate(new Vector3(0f, x * rotationSpeed, 0f));
-
-        // start dashing
-        if (Input.GetButtonDown("Fire3") && dashCooldown <= 0)
-        {
-            ChangeState(new PlayerDashing(this));
-        }
 
     }
     void jump()

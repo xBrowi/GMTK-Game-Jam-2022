@@ -17,6 +17,7 @@ public class PlayerDriving : PlayerState
     {
 
         Cursor.lockState = CursorLockMode.Locked;
+
 }
     public override void OnStateExit()
     {
@@ -27,7 +28,17 @@ public class PlayerDriving : PlayerState
     public override void OnStateUpdate()
     {
 
-        
+        // start dashing
+        if (Input.GetKeyDown(KeyCode.LeftShift) && playerController.dashCooldown <= 0)
+        {
+            playerController.ChangeState(new PlayerDashing(playerController));
+        }
+
+        // start attacking
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            playerController.ChangeState(new PlayerAttacking(playerController));
+        }
     }
     public override void OnStateFixedUpdate()
     {

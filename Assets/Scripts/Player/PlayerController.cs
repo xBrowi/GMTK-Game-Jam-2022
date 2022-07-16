@@ -14,13 +14,12 @@ public class PlayerController : MonoBehaviour
     // Player movement variables
     public float groundDistance = 1f;
     public float rotationSpeed = 0.1f;
-    public float accelleration = 12f;
+    public float accelleration = 8f;
     public float maxSpeed;
+    public float sidewaysDrag;
 
-    public float gravity = -9.81f;
-    public float jumpHeight = 3;
+    public float jumpForce;
     public float wheelRotationSpeed;
-    public float driftFriction;
 
     public GameObject groundCheck;
     public LayerMask groundMask;
@@ -76,6 +75,8 @@ public class PlayerController : MonoBehaviour
 
         // Cooldowns
         dashCooldown -= Time.deltaTime;
+
+
     }
 
     private void RotateWheel(GameObject wheel)

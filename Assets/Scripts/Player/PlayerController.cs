@@ -38,9 +38,13 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public Rigidbody rb;
 
+    [HideInInspector]
+    public Animator animator;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
         currentState = new PlayerDriving(this);
         currentState.OnStateEnter();        
     }
@@ -81,6 +85,7 @@ public class PlayerController : MonoBehaviour
 
     public void ChangeState(PlayerState newState)
     {
+        Debug.Log($"Change state from {currentState.ToString()} to {newState.ToString()}");
         currentState.OnStateExit();
         currentState = newState;
         newState.OnStateEnter();

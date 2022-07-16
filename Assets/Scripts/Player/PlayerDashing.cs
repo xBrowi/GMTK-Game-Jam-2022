@@ -6,7 +6,7 @@ public class PlayerDashing : PlayerState
 {
     float dashTimeLeft;
     GameObject dashTrail = GameObject.Find("dashTrailRendererObject");
-
+    
 
     public PlayerDashing(PlayerController playerController) : base(playerController)
     {
@@ -17,7 +17,7 @@ public class PlayerDashing : PlayerState
     {
         dashTimeLeft = playerController.dashTime;
 
-        playerController.rb.AddRelativeForce(new Vector3(0, 0, playerController.dashSpeed), ForceMode.Impulse);
+
         //velocity = playerController.transform.TransformDirection(Vector3.left) * playerController.dashSpeed;
 
         dashTrail.GetComponent<TrailRenderer>().emitting = true;
@@ -27,7 +27,6 @@ public class PlayerDashing : PlayerState
     public override void OnStateExit()
     {
         playerController.dashCooldown = playerController.dashCooldownMax;
-
         dashTrail.GetComponent<TrailRenderer>().emitting = false;
 
     }
@@ -36,9 +35,17 @@ public class PlayerDashing : PlayerState
         //playerController.controller.Move(velocity * Time.deltaTime);
 
         dashTimeLeft -= Time.deltaTime;
+        Debug.Log(dashTimeLeft);
         if (dashTimeLeft <= 0)
         {
             playerController.ChangeState(new PlayerDriving(playerController));
         }
+
+
+        Vector3 dashVector = playerController.transform.forward * playerController.dashSpeed;
+
+        dashVector = Quaternion.Euler(0, -90, 0) * dashVector;
+
+        playerController.rb.velocity = dashVector;
     }
 }

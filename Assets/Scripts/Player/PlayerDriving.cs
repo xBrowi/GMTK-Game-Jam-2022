@@ -5,13 +5,11 @@ using UnityEngine;
 public class PlayerDriving : PlayerState
 {
 
-
-
-
     [SerializeField] Vector3 velocity;
 
     public float turnSmoothTime = 1f;
-    float turnSmoothVelocity;
+
+
 
     public PlayerDriving(PlayerController playerController) : base(playerController)
     {
@@ -31,8 +29,24 @@ public class PlayerDriving : PlayerState
 
     public override void OnStateUpdate()
     {
-        float x = Input.GetAxisRaw("Horizontal");
+        float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
+
+        if (x < 0)
+        {
+            playerController.animator.SetBool("isTurningLeft", true);
+            playerController.animator.SetBool("isTurningRight", false);
+
+        }
+        else if(x > 0){
+            playerController.animator.SetBool("isTurningRight", true);
+            playerController.animator.SetBool("isTurningLeft", false);
+        }
+        else
+        {
+            playerController.animator.SetBool("isTurningLeft", false);
+            playerController.animator.SetBool("isTurningRight", false);
+        }
 
         playerController.rb.AddRelativeForce(-z * playerController.accelleration, 0, 0, ForceMode.Acceleration);
 

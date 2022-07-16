@@ -28,15 +28,15 @@ public class MusicTrackController : MonoBehaviour
     void Update()
     {
         // Fade to wanted volume if it is not already reached
-        if (audioSource.volume > volumeAtIntensityLevel[currentIntensity])
+        if (AudioSource.volume > volumeAtIntensityLevel[currentIntensity])
         {
-            audioSource.volume -= Time.deltaTime * volumeChangePerSecond;
-            if (audioSource.volume < volumeAtIntensityLevel[currentIntensity]) audioSource.volume = volumeAtIntensityLevel[currentIntensity];
+            AudioSource.volume -= Time.deltaTime * volumeChangePerSecond;
+            if (AudioSource.volume < volumeAtIntensityLevel[currentIntensity]) AudioSource.volume = volumeAtIntensityLevel[currentIntensity];
         }
-        else if(audioSource.volume < volumeAtIntensityLevel[currentIntensity])
+        else if(AudioSource.volume < volumeAtIntensityLevel[currentIntensity])
         {
-            audioSource.volume += Time.deltaTime * volumeChangePerSecond;
-            if (audioSource.volume > volumeAtIntensityLevel[currentIntensity]) audioSource.volume = volumeAtIntensityLevel[currentIntensity];
+            AudioSource.volume += Time.deltaTime * volumeChangePerSecond;
+            if (AudioSource.volume > volumeAtIntensityLevel[currentIntensity]) AudioSource.volume = volumeAtIntensityLevel[currentIntensity];
         }
     }
 }

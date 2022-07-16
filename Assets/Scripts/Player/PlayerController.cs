@@ -32,6 +32,7 @@ public class PlayerController : MonoBehaviour
     public float dashSpeed;
 
     public float attackCooldownMax;
+    public float damage;
 
     [HideInInspector]
     public float dashCooldown = 0;

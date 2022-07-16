@@ -6,6 +6,8 @@ TagManager:
   tags:
   - speedPowerup
   - jumpPowerup
+  - damagePowerup
+  - dashPowerup
   layers:
   - Default
   - TransparentFX

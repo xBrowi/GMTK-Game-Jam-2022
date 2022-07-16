@@ -7,6 +7,8 @@ public class PowerupCollection : MonoBehaviour
     public float speedBonus;
     public float jumpBonus;
     public float accelerationBonus;
+    public float dashBonus;
+    public float damageBonus;
 
     private PlayerController PC;
     private void Start()
@@ -26,6 +28,12 @@ public class PowerupCollection : MonoBehaviour
                 case "jumpPowerup":
                     PC.jumpForce += jumpBonus;
 
+                    break;
+                case "dashPowerup":
+                    PC.dashTime += dashBonus;
+                    break;
+                case "damagePowerup":
+                    PC.damage += damageBonus;
                     break;
                 default:
                     break;

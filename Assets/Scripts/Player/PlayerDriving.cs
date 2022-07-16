@@ -2,14 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerIdle : PlayerState
+public class PlayerDriving : PlayerState
 {
-    public Transform groundCheck;
 
-
-
-    float x;
-    float z;
 
 
 
@@ -18,7 +13,7 @@ public class PlayerIdle : PlayerState
     public float turnSmoothTime = 1f;
     float turnSmoothVelocity;
 
-    public PlayerIdle(PlayerController playerController) : base(playerController)
+    public PlayerDriving(PlayerController playerController) : base(playerController)
     {
         this.playerController = playerController;
     }
@@ -36,10 +31,11 @@ public class PlayerIdle : PlayerState
 
     public override void OnStateUpdate()
     {
-        x = Input.GetAxisRaw("Horizontal");
-        z = Input.GetAxis("Vertical");
+        float x = Input.GetAxisRaw("Horizontal");
+        float z = Input.GetAxis("Vertical");
 
-        velocity = playerController.transform.TransformDirection(Vector3.left) * playerController.speed * z + new Vector3(0f, velocity.y, 0f); ;
+        playerController.rb.AddRelativeForce(-z * playerController.accelleration, 0, 0, ForceMode.Acceleration);
+
 
         if (Input.GetButtonDown("Jump") && playerController.isGrounded)
         {
@@ -52,10 +48,7 @@ public class PlayerIdle : PlayerState
         }
 
 
-        velocity.y += playerController.gravity * Time.deltaTime;
-
         playerController.transform.Rotate(new Vector3(0f, x * playerController.rotationSpeed, 0f));
-        playerController.controller.Move(velocity * Time.deltaTime);
 
         // start dashing
         if (Input.GetButtonDown("Fire3") && playerController.dashCooldown <= 0)

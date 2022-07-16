@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerDashing : PlayerState
 {
-    int Dashing;
-    Vector3 velocity;
+    float dashTimeLeft;
     GameObject dashTrail = GameObject.Find("dashTrailRendererObject");
-    Vector3 trailVectorPosition;
+
+
     public PlayerDashing(PlayerController playerController) : base(playerController)
     {
         this.playerController = playerController;
@@ -15,9 +15,10 @@ public class PlayerDashing : PlayerState
 
     public override void OnStateEnter()
     {
-        Dashing = playerController.dashTime;
+        dashTimeLeft = playerController.dashTime;
 
-        velocity = playerController.transform.TransformDirection(Vector3.left) * playerController.dashSpeed;
+        playerController.rb.AddRelativeForce(new Vector3(0, 0, playerController.dashSpeed), ForceMode.Impulse);
+        //velocity = playerController.transform.TransformDirection(Vector3.left) * playerController.dashSpeed;
 
         dashTrail.GetComponent<TrailRenderer>().emitting = true;
 
@@ -32,11 +33,12 @@ public class PlayerDashing : PlayerState
     }
     public override void OnStateUpdate()
     {
-        playerController.controller.Move(velocity * Time.deltaTime);
-        Dashing--;
-        if (Dashing <= 0)
+        //playerController.controller.Move(velocity * Time.deltaTime);
+
+        dashTimeLeft -= Time.deltaTime;
+        if (dashTimeLeft <= 0)
         {
-            playerController.ChangeState(new PlayerIdle(playerController));
+            playerController.ChangeState(new PlayerDriving(playerController));
         }
     }
 }

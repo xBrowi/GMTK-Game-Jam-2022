@@ -12,9 +12,9 @@ public class PlayerController : MonoBehaviour
     public GameObject wheelBackRight;
 
     // Player movement variables
-    public float groundDistance = 1f;
     public float rotationSpeed = 0.1f;
     public float accelleration = 8f;
+    public float groundDistance = 1f;
     public float maxSpeed;
     public float sidewaysDrag;
     public float forwardsDrag;
@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
         // Check if grounded
         if (groundCheck != null)
         {
-            isGrounded = Physics.CheckSphere(groundCheck.transform.position, groundDistance, groundMask);
+            isGrounded = Physics.CheckBox(groundCheck.transform.position, new Vector3 (0.5f, groundDistance, 0.4f),transform.rotation ,groundMask);
         }
 
         // Call the current state's update
@@ -89,6 +89,11 @@ public class PlayerController : MonoBehaviour
     private void RotateWheel(GameObject wheel)
     {
         wheel.transform.Rotate(new Vector3(0, 0, Time.deltaTime * wheelRotationSpeed * rb.velocity.magnitude), Space.Self);
+    }
+
+    private void movement ()
+    {
+
     }
 
     public void ChangeState(PlayerState newState)

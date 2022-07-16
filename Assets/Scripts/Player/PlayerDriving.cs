@@ -5,11 +5,6 @@ using UnityEngine;
 
 public class PlayerDriving : PlayerState
 {
-
-    [SerializeField] Vector3 velocity;
-
-    public float turnSmoothTime = 1f;
-
     float x;
     float z;
 

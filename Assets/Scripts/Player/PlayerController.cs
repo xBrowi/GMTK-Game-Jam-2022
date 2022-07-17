@@ -157,6 +157,15 @@ public class PlayerController : MonoBehaviour
         }
 
 
+        if (z == 0)
+        {
+            forkliftIdleSoundController.TurnOff();
+        }
+        else
+        {
+            forkliftIdleSoundController.TurnOn();
+        }
+
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             jumpKeyWasPressed = true;
@@ -175,7 +184,6 @@ public class PlayerController : MonoBehaviour
     void acceleration()
     {
         rb.AddRelativeForce(-z * accelleration, 0, 0, ForceMode.Acceleration);
-        forkliftIdleSoundController.TurnOn();
     }
 
     void movementFixedUpdate()

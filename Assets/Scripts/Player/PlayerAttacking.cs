@@ -16,6 +16,9 @@ public class PlayerAttacking : PlayerState
         playerController.playerAnimator.SetBool("isTurningLeft", false);
         playerController.playerAnimator.SetBool("isTurningRight", false);
         playerController.playerAnimator.SetBool("isAttacking", true);
+
+        SoundBank.PlayAudioClip(SoundBank.GetInstance().playerAttackAudioClips, playerController.AudioSource);
+
     }
 
     public override void OnStateExit()

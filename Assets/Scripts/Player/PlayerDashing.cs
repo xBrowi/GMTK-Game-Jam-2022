@@ -19,8 +19,8 @@ public class PlayerDashing : PlayerState
 
 
         //velocity = playerController.transform.TransformDirection(Vector3.left) * playerController.dashSpeed;
-
         dashTrail.GetComponent<TrailRenderer>().emitting = true;
+        SoundBank.PlayAudioClip(SoundBank.GetInstance().playerDashAudioClips, playerController.AudioSource);
 
 
     }

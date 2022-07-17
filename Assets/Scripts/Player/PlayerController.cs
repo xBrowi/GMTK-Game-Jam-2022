@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public GameObject wheelBackLeft;
     public GameObject wheelBackRight;
 
+    public ForkliftIdleSoundController forkliftIdleSoundController;
+
     // Player movement variables
     public float rotationSpeed = 0.1f;
     public float accelleration = 8f;
@@ -49,6 +51,16 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public Animator playerAnimator;
+
+    private AudioSource audioSource;
+    public AudioSource AudioSource
+    {
+        get
+        {
+            if (audioSource == null) audioSource = GetComponent<AudioSource>();
+            return audioSource;
+        }
+    }
 
     void Start()
     {
@@ -155,10 +167,12 @@ public class PlayerController : MonoBehaviour
     {
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
         rb.AddForce(0, jumpForce, 0, ForceMode.VelocityChange);
+        SoundBank.PlayAudioClip(SoundBank.GetInstance().playerJumpAudioClips, AudioSource);
     }
     void acceleration()
     {
         rb.AddRelativeForce(-z * accelleration, 0, 0, ForceMode.Acceleration);
+        forkliftIdleSoundController.TurnOn();
     }
 
     void movementFixedUpdate()
@@ -210,5 +224,14 @@ public class PlayerController : MonoBehaviour
     public void OnAttackAnimationFinished()
     {
         ChangeState(new PlayerDriving(this));
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void Die()
+    {
+        SoundBank.PlayAudioClip(SoundBank.GetInstance().playerDeathAudioClips, AudioSource);
+
     }
 }

@@ -32,7 +32,7 @@ public class DiceController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         particleSystem = GetComponent<ParticleSystem>();
-        Spin();
+        //Spin();
     }
 
 
@@ -116,5 +116,14 @@ public class DiceController : MonoBehaviour
         enemiesSpawned = true;
     }
 
+
+    public void Launch(Vector3 initVelocity)
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        rb.velocity = initVelocity;
+        rb.angularVelocity = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), Random.Range(-5, 5));
+        isRolling = true;
+
+    }
 
 }

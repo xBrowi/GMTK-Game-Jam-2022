@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CannonController : MonoBehaviour
 {
+    public DiceController dicePrefab;
     public Transform Spawnpoint;
 
     public float minLaunchVelocityX;
@@ -32,10 +33,18 @@ public class CannonController : MonoBehaviour
 
             if (chargeTime >= maxChargeTime)
             {
+                DiceController dc = Instantiate(dicePrefab);
+                dc.transform.position = Spawnpoint.position;
+                dc.Launch(new Vector3(Random.Range(minLaunchVelocityX, maxLaunchVelocityX), Random.Range(minLaunchVelocityY, maxLaunchVelocityY), Random.Range(minLaunchVelocityZ, maxLaunchVelocityZ)));
 
                 chargeTime = 0;
                 isCharging = false;
             }
+        }
+        else
+        {
+            // Shoot at all times L0l
+            ChargeAndShoot();
         }
     }
 

@@ -15,7 +15,6 @@ public class EnemyController : MonoBehaviour
 
     public Animator animator;
 
-
     public Collider bodyCollider;
 
     private new Rigidbody rigidbody;

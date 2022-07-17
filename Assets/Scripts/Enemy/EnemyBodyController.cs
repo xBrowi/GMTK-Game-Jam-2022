@@ -7,6 +7,6 @@ public class EnemyBodyController : MonoBehaviour
     public EnemyController enemyController;
     public void OnSpawnAnimFinished()
     {
-        enemyController.ChangeState(new EnemyIdle(enemyController));
+        enemyController.ChangeState(new EnemyChase(enemyController));
     }
 }

@@ -16,6 +16,7 @@ public class EnemyIdle : EnemyState
 
     public override void OnStateExit()
     {
+        enemyController.animator.SetBool("isIdle", false);
     }
 
     public override void OnStateUpdate()

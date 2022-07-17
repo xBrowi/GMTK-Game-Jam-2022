@@ -1,7 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -21,6 +24,14 @@ public class GameController : MonoBehaviour
     public List<WaveDefinition> waveDefinitions;
     public MusicController musicController;
     public AudienceController audienceController;
+    public TMP_Text waveText;
+    public Image endScreenImage;
+    public GameObject healthBar;
+    public GameObject healthBox;
+
+    public Sprite loseSprite;
+    public Sprite winSprite;
+
 
     public CannonController cannonLeft;
     public CannonController cannonRight;
@@ -46,6 +57,19 @@ public class GameController : MonoBehaviour
                 currentWave++;
                 SpawnWave(currentWave);
             }
+
+            if (currentWave != waveDefinitions.Count -1)
+            {
+                waveText.SetText($"{(int)timeLeftUntilNextWave} seconds until {waveDefinitions[currentWave + 1].waveName }");
+            }
+            else
+            {
+                waveText.SetText($"Press Esc to play again");
+                if (Input.GetKeyDown(KeyCode.Escape)) 
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
+            }
         }
     }
 
@@ -59,6 +83,13 @@ public class GameController : MonoBehaviour
         cannonLeft.LoadRewardDice(waveDefinitions[wave].nrOfRewardPowerUpsLeft);
         cannonRight.LoadRewardDice(waveDefinitions[wave].nrOfRewardPowerUpsRight);
 
+        if (wave == waveDefinitions.Count - 1)
+        {
+            endScreenImage.sprite = winSprite;
+            endScreenImage.enabled = true;
+            healthBar.SetActive(false);
+            healthBox.SetActive(false);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -67,5 +98,13 @@ public class GameController : MonoBehaviour
         hasEnteredArena = true;
 
         SpawnWave(0);
+    }
+
+    public void Lose()
+    {
+        endScreenImage.sprite = loseSprite;
+        endScreenImage.enabled = true;
+        healthBar.SetActive(false);
+        healthBox.SetActive(false);
     }
 }

@@ -159,9 +159,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be1674d017d7f8e4fb03cd5a79fb6e7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 0
+  maxHealth: 100
   Health: 0
   EnemySpeed: 4
+  wait1: 0
   minDist: 2.5
   dist: 0
   head: {fileID: 1797553053926724484}

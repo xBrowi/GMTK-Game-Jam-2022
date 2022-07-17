@@ -30,6 +30,16 @@ public class DiceController : MonoBehaviour
     private bool enemiesSpawned = false;
     private float selfDestructTimer = 3;
 
+    private AudioSource audioSource;
+    public AudioSource AudioSource
+    {
+        get
+        {
+            if (audioSource == null) audioSource = GetComponent<AudioSource>();
+            return audioSource;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,6 +100,8 @@ public class DiceController : MonoBehaviour
             {
                 SpawnEnemies(rollResult);
             }
+
+            SoundBank.PlayAudioClip(SoundBank.GetInstance().diceSplitAudioClips, AudioSource);
         }
 
         if (enemiesSpawned == true)
@@ -171,6 +183,12 @@ public class DiceController : MonoBehaviour
         rb.angularVelocity = new Vector3(Random.Range(-5, 5), Random.Range(-5, 5), Random.Range(-5, 5));
         isRolling = true;
 
+    }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        SoundBank.PlayAudioClip(SoundBank.GetInstance().diceImpactBigAudioClips, AudioSource);
     }
 
 }

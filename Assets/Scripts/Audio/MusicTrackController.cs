@@ -39,4 +39,20 @@ public class MusicTrackController : MonoBehaviour
             if (AudioSource.volume > volumeAtIntensityLevel[currentIntensity]) AudioSource.volume = volumeAtIntensityLevel[currentIntensity];
         }
     }
+
+    public void SetIntensity(int lvl)
+    {
+        if (lvl < 0 || lvl >= volumeAtIntensityLevel.Count) return;
+        currentIntensity = lvl;
+    }
+
+    public void Play()
+    {
+        AudioSource.Play();
+    }
+
+    public void Stop()
+    {
+        AudioSource.Stop();
+    }
 }

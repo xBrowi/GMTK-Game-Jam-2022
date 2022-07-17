@@ -6,6 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     public float maxHealth;
     public float Health;
+    public float EnemySpeed;
 
     public GameObject head;
     public GameObject body;

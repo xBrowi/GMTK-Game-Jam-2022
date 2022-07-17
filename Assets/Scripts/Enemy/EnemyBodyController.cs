@@ -8,5 +8,9 @@ public class EnemyBodyController : MonoBehaviour
     public void OnSpawnAnimFinished()
     {
         enemyController.ChangeState(new EnemyChase(enemyController));
+
+        enemyController.Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+
+        enemyController.GetComponent<EnemyLookAtPlayer>().enabled = true;
     }
 }

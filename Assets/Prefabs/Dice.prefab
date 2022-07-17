@@ -144,7 +144,8 @@ MonoBehaviour:
   enemyPrefab: {fileID: 5568121534816545708, guid: 6f5dba288c0de114fa6bae69b4221a99, type: 3}
   stoppingAngularVelocity: 0.1
   stoppingVelocity: 0.1
-  enemySpawnDistanceFromDice: 1.5
+  minEnemyFlingForce: 3
+  maxEnemyFlingForce: 5
 --- !u!198 &1898250761863040790
 ParticleSystem:
   m_ObjectHideFlags: 0

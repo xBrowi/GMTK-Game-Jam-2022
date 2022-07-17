@@ -6,21 +6,27 @@ public class EnemyController : MonoBehaviour
 {
     public GameObject head;
     public GameObject body;
-
-    [HideInInspector]
-    public new Rigidbody rigidbody;
+    public GameObject torso;
 
     private EnemyState currentState;
 
     public Animator animator;
+
+
     public Collider bodyCollider;
 
-
+    private new Rigidbody rigidbody;
+    public Rigidbody Rigidbody
+    {
+        get
+        {
+            if (rigidbody == null) rigidbody = GetComponent<Rigidbody>();
+            return rigidbody;
+        }
+    }
     // Start is called before the first frame update
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody>();
-        animator = GetComponent<Animator>();
         currentState = new EnemySpawn(this);
         currentState.OnStateEnter();
     }
@@ -36,4 +42,5 @@ public class EnemyController : MonoBehaviour
         currentState = newState;
         currentState.OnStateEnter();
     }
+
 }

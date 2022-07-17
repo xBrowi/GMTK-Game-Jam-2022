@@ -16,7 +16,9 @@ public class DiceController : MonoBehaviour
 
     public float stoppingAngularVelocity;
     public float stoppingVelocity;
-    public float enemySpawnDistanceFromDice;
+
+    public float minEnemyFlingForce;
+    public float maxEnemyFlingForce;
 
     private Rigidbody rb;
     private new ParticleSystem particleSystem;
@@ -97,6 +99,7 @@ public class DiceController : MonoBehaviour
     {
         particleSystem.Play();
         GetComponent<Collider>().enabled = false;
+        GetComponent<MeshRenderer>().enabled = false;
         rb.useGravity = false;
         rb.velocity = Vector3.zero;
         
@@ -105,14 +108,9 @@ public class DiceController : MonoBehaviour
         {
             EnemyController ec = Instantiate(enemyPrefab);
 
-            if (i == 0)
-            {
-                ec.transform.position = transform.position;
-            }
-            else
-            {
-                ec.transform.position = Quaternion.Euler(0, i * 72, 0) * Vector3.forward * enemySpawnDistanceFromDice;
-            }
+            ec.transform.position = transform.position;
+            ec.Rigidbody.velocity = new Vector3(Random.Range(minEnemyFlingForce, maxEnemyFlingForce), Random.Range(minEnemyFlingForce, maxEnemyFlingForce * 2), Random.Range(minEnemyFlingForce, maxEnemyFlingForce));
+
         }
 
         enemiesSpawned = true;

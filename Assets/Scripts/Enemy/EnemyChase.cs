@@ -20,6 +20,7 @@ public class EnemyChase : EnemyState
 
     public override void OnStateExit()
     {
+        enemyController.animator.SetBool("isRunning", false);
     }
 
     public override void OnStateUpdate()
@@ -36,5 +37,6 @@ public class EnemyChase : EnemyState
             enemyController.ChangeState(new EnemyAttack(enemyController));
             Debug.Log("AAAaAa");
         }
+
     }
 }

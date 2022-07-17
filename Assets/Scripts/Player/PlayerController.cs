@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     public float attackCooldownMax;
     public float damage;
+    public float damageTaken;
 
     public float maxHealth;
 

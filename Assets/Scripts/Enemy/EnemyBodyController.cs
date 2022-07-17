@@ -23,4 +23,9 @@ public class EnemyBodyController : MonoBehaviour
             enemyController.ChangeState(new EnemyChase(enemyController));
 
     }
+
+    public void EnemyDamage()
+    {
+        enemyController.transform.GetChild(1).GetComponent<BoxCollider>().enabled = true;
+    }
 }

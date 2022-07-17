@@ -12,11 +12,12 @@ public class EnemyAttack : EnemyState
     public override void OnStateEnter()
     {
         enemyController.animator.SetBool("isSwiping", true);
-        enemyController.animator.SetBool("isRunning", false);
     }
 
     public override void OnStateExit()
     {
+
+        enemyController.transform.GetChild(1).GetComponent<BoxCollider>().enabled = false;
     }
 
     public override void OnStateUpdate()

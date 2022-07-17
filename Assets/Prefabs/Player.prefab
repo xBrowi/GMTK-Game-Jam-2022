@@ -1320,6 +1320,7 @@ MonoBehaviour:
   dashSpeed: 50
   attackCooldownMax: 0.75
   damage: 20
+  damageTaken: 20
   maxHealth: 100
   health: 0
   dashCooldown: 0

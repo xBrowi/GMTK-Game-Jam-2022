@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     float x;
     float z;
 
+    private bool jumpKeyWasPressed;
+
     public float jumpForce;
     public float wheelRotationSpeed;
 
@@ -139,14 +141,10 @@ public class PlayerController : MonoBehaviour
             playerAnimator.SetBool("isTurningRight", false);
         }
 
-        if (isGrounded)
-        {
-            acceleration();
-        }
 
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            jump();
+            jumpKeyWasPressed = true;
         }
 
 
@@ -165,6 +163,17 @@ public class PlayerController : MonoBehaviour
 
     void movementFixedUpdate()
     {
+        if (jumpKeyWasPressed)
+        {
+            jump();
+            jumpKeyWasPressed = false;
+        }
+
+        if (isGrounded)
+        {
+            acceleration();
+        }
+
         // drag
         if (isGrounded)
         {

@@ -13,12 +13,15 @@ public class DiceController : MonoBehaviour
 
 
     public EnemyController enemyPrefab;
+    public List<GameObject> powerUps; 
 
     public float stoppingAngularVelocity;
     public float stoppingVelocity;
 
     public float minEnemyFlingForce;
     public float maxEnemyFlingForce;
+
+    public bool IsPowerUp = false;
 
     private Rigidbody rb;
     private new ParticleSystem particleSystem;
@@ -79,7 +82,14 @@ public class DiceController : MonoBehaviour
             Debug.Log($"Dice landed on a {rollResult}!");
             isRolling = false;
 
-            SpawnEnemies(rollResult);
+            if (IsPowerUp)
+            {
+                SpawnPowerUps(rollResult);
+            }
+            else
+            {
+                SpawnEnemies(rollResult);
+            }
         }
 
         if (enemiesSpawned == true)
@@ -111,6 +121,43 @@ public class DiceController : MonoBehaviour
             ec.transform.position = transform.position;
             ec.Rigidbody.velocity = new Vector3(Random.Range(minEnemyFlingForce, maxEnemyFlingForce), Random.Range(minEnemyFlingForce, maxEnemyFlingForce * 2), Random.Range(minEnemyFlingForce, maxEnemyFlingForce));
 
+        }
+
+        enemiesSpawned = true;
+    }
+
+    private void SpawnPowerUps(int nr)
+    {
+        particleSystem.Play();
+        GetComponent<Collider>().enabled = false;
+        GetComponent<MeshRenderer>().enabled = false;
+        rb.useGravity = false;
+        rb.velocity = Vector3.zero;
+
+        GameObject powerUp;
+        GameObject powerUp2 = null;
+
+        switch (nr)
+        {
+            case 1:
+                powerUp = Instantiate(powerUps[Random.Range(0, powerUps.Count)]);
+                break;
+            case 6:
+                powerUp = Instantiate(powerUps[Random.Range(0, powerUps.Count)]);
+                powerUp2 = Instantiate(powerUps[Random.Range(0, powerUps.Count)]);
+                break;
+            default:
+                powerUp = Instantiate(powerUps[Random.Range(0, nr - 2)]);
+                break;
+        }
+
+        powerUp.transform.position = transform.position;
+        powerUp.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(minEnemyFlingForce, maxEnemyFlingForce), Random.Range(minEnemyFlingForce, maxEnemyFlingForce * 2), Random.Range(minEnemyFlingForce, maxEnemyFlingForce));
+
+        if (powerUp2 != null)
+        {
+            powerUp2.transform.position = transform.position;
+            powerUp2.GetComponent<Rigidbody>().velocity = new Vector3(Random.Range(minEnemyFlingForce, maxEnemyFlingForce), Random.Range(minEnemyFlingForce, maxEnemyFlingForce * 2), Random.Range(minEnemyFlingForce, maxEnemyFlingForce));
         }
 
         enemiesSpawned = true;

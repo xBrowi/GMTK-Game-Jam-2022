@@ -17,6 +17,18 @@ public class CannonController : MonoBehaviour
 
     private bool isCharging = false;
     private float chargeTime = 0;
+    private float nrOfDiceLoaded = 0;
+    private float nrOfPowerUpsLoaded = 0;
+
+    private AudioSource audioSource;
+    public AudioSource AudioSource
+    {
+        get
+        {
+            if (audioSource == null) audioSource = GetComponent<AudioSource>();
+            return audioSource;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -27,17 +39,21 @@ public class CannonController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isCharging)
+        if (isCharging && (nrOfDiceLoaded > 0 || nrOfPowerUpsLoaded > 0))
         {
             chargeTime += Time.deltaTime;
 
             if (chargeTime >= maxChargeTime)
             {
+                SoundBank.PlayAudioClip(SoundBank.GetInstance().cannonShotAudioClips, AudioSource);
+
                 DiceController dc = Instantiate(dicePrefab);
                 dc.transform.position = Spawnpoint.position;
+                
                 dc.Launch(new Vector3(Random.Range(minLaunchVelocityX, maxLaunchVelocityX), Random.Range(minLaunchVelocityY, maxLaunchVelocityY), Random.Range(minLaunchVelocityZ, maxLaunchVelocityZ)));
 
                 chargeTime = 0;
+                nrOfDiceLoaded--;
                 isCharging = false;
             }
         }
@@ -55,7 +71,19 @@ public class CannonController : MonoBehaviour
     public bool ChargeAndShoot()
     {
         if (isCharging) return false;
+
+
         isCharging = true;
         return true;
+    }
+
+    public void LoadEnemyDice(int nrOfDice)
+    {
+        nrOfDiceLoaded += nrOfDice;
+    }
+
+    public void LoadRewardDice(int nrOfDice)
+    {
+        nrOfPowerUpsLoaded += nrOfDice;
     }
 }

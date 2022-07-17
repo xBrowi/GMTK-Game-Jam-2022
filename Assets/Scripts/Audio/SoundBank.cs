@@ -24,6 +24,10 @@ public class SoundBank : MonoBehaviour
     public List<AudioClip> playerImpactAudioClips;
     public List<AudioClip> playerUpgradeAudioClips;
     public List<AudioClip> playerAttackAudioClips;
+    public List<AudioClip> cannonShotAudioClips;
+    public List<AudioClip> diceSplitAudioClips;
+    public List<AudioClip> diceImpactBigAudioClips;
+    public List<AudioClip> diceImpactSmallAudioClips;
 
 
     /// <summary>

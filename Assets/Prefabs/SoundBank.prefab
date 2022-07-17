@@ -67,3 +67,28 @@ MonoBehaviour:
   playerAttackAudioClips:
   - {fileID: 8300000, guid: 2e2f6a37456879f43846b5e6bdf87e29, type: 3}
   - {fileID: 8300000, guid: 21883fcdaf1549a4b918c173294dd951, type: 3}
+  cannonShotAudioClips:
+  - {fileID: 8300000, guid: cb881bb89c7841447894e525b274ce56, type: 3}
+  - {fileID: 8300000, guid: ca499a5fcf9a65d4f9f5dbbb9a795fcb, type: 3}
+  - {fileID: 8300000, guid: 2d5c96b88c129aa428980b9b058ea718, type: 3}
+  - {fileID: 8300000, guid: 447ed578c5398914e89ff5a0aedd5b9c, type: 3}
+  - {fileID: 8300000, guid: f6747e3f5f2cbf4409d83f711594c095, type: 3}
+  - {fileID: 8300000, guid: 18c217b179fc515408df4df650a490ee, type: 3}
+  - {fileID: 8300000, guid: af2dba2ea32fcd54e9129500913ef1ca, type: 3}
+  - {fileID: 8300000, guid: 6846b624a47ac6c4c8eb7d00fe06d41b, type: 3}
+  - {fileID: 8300000, guid: 5b722a34c4258eb41803eeabe5fc4b95, type: 3}
+  diceSplitAudioClips:
+  - {fileID: 8300000, guid: 273a4eb0b251cdb4eb21b5a98c9f2bf8, type: 3}
+  - {fileID: 8300000, guid: 56c293286909205458c2e1189f307b29, type: 3}
+  - {fileID: 8300000, guid: cb01263144c92a44c9b5cddceb8a7b63, type: 3}
+  - {fileID: 8300000, guid: e85462be5497b48418a247efc4f853d2, type: 3}
+  diceImpactBigAudioClips:
+  - {fileID: 8300000, guid: 96617f22b6ddda448b218c931a0a923c, type: 3}
+  - {fileID: 8300000, guid: 51b4895c0fca75a429f49de05d652ff4, type: 3}
+  - {fileID: 8300000, guid: 47baba67c6ec9bd40beaa360e03ede51, type: 3}
+  - {fileID: 8300000, guid: 07664fbef767e2e4d9d1192f9ff44b3f, type: 3}
+  diceImpactSmallAudioClips:
+  - {fileID: 8300000, guid: ea121c095cecdbf41a0505288f328661, type: 3}
+  - {fileID: 8300000, guid: bd4726222b6be604392830fcbe6d05e7, type: 3}
+  - {fileID: 8300000, guid: bf1c714dc182ab746b061116eae3b564, type: 3}
+  - {fileID: 8300000, guid: 991a7d9a3f2e51041bac6a2530da596d, type: 3}

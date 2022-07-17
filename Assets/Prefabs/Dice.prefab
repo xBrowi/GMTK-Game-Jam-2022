@@ -142,10 +142,16 @@ MonoBehaviour:
   front: {fileID: 3350451603410225516}
   back: {fileID: 3350451602484057882}
   enemyPrefab: {fileID: 5568121534816545708, guid: 6f5dba288c0de114fa6bae69b4221a99, type: 3}
+  powerUps:
+  - {fileID: 5043023401059374378, guid: 00044062ae3017f4f8f64c34aa55db3f, type: 3}
+  - {fileID: 6170614499582389889, guid: 62945a831617b38408285f2ea00f2176, type: 3}
+  - {fileID: 5624894345580157485, guid: 03f91be25acd13846822690f3cf30975, type: 3}
+  - {fileID: 3832404176451334392, guid: 0fce93acaeaac9240b6b2fc728b3136a, type: 3}
   stoppingAngularVelocity: 0.1
   stoppingVelocity: 0.1
   minEnemyFlingForce: 2
   maxEnemyFlingForce: 3.5
+  IsPowerUp: 0
 --- !u!198 &1898250761863040790
 ParticleSystem:
   m_ObjectHideFlags: 0

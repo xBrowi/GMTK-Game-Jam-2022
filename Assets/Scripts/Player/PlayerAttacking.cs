@@ -25,6 +25,7 @@ public class PlayerAttacking : PlayerState
     {
         playerController.playerAnimator.SetBool("isAttacking", false);
         playerController.attackCooldown = playerController.attackCooldownMax;
+        playerController.damageCollider.enabled = false;
     }
     public override void OnStateUpdate()
     {

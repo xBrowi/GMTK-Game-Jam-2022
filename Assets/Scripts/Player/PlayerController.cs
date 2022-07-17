@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     public GameObject wheelBackLeft;
     public GameObject wheelBackRight;
 
+    public BoxCollider damageCollider;
+
     public ForkliftIdleSoundController forkliftIdleSoundController;
 
     // Player movement variables
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         currentState = new PlayerDriving(this);
         currentState.OnStateEnter();
+        damageCollider = GameObject.Find("DamageCollider").GetComponent<BoxCollider>();
     }
     void Update()
     {
@@ -233,5 +236,13 @@ public class PlayerController : MonoBehaviour
     {
         SoundBank.PlayAudioClip(SoundBank.GetInstance().playerDeathAudioClips, AudioSource);
 
+    }
+
+
+    public void OnDamageAnimation()
+    {
+        
+        Debug.Log("DMG");
+        damageCollider.enabled = true;
     }
 }

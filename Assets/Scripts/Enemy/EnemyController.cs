@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    public float maxHealth;
+    public float Health;
+
     public GameObject head;
     public GameObject body;
     public GameObject torso;
@@ -29,6 +32,7 @@ public class EnemyController : MonoBehaviour
     {
         currentState = new EnemySpawn(this);
         currentState.OnStateEnter();
+        Health = maxHealth;
     }
 
     void Update()

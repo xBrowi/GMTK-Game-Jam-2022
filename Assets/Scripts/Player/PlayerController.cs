@@ -272,4 +272,5 @@ public class PlayerController : MonoBehaviour
     {
         SoundBank.PlayAudioClip(SoundBank.GetInstance().playerUpgradeAudioClips, AudioSource);
     }
+
 }

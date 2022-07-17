@@ -33,6 +33,7 @@ public class EnemySpawn : EnemyState
         {
             enemyController.body.gameObject.SetActive(true);
             enemyController.animator.SetBool("isSpawning", true);
+            enemyController.transform.rotation = new Quaternion(0, enemyController.transform.rotation.y, 0, 0);
             enemyController.body.transform.rotation = new Quaternion(0, Random.Range(0, 360), 0, 0);
             enemyController.body.transform.position = enemyController.head.transform.position - new Vector3(0, 1.5f, 0);
 

@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8752993797458351426}
   - component: {fileID: 6817348340618043784}
   - component: {fileID: 5286526207979518647}
-  - component: {fileID: 5286526207979518643}
   m_Layer: 0
   m_Name: Decor_PumpTruck
   m_TagString: Untagged
@@ -103,20 +102,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &5286526207979518643
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5016141654676766813}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -1200046954770967846, guid: c50097772f4f1e94d9dab64e44775b95, type: 3}
 --- !u!1 &5286526207770788032
 GameObject:
   m_ObjectHideFlags: 0

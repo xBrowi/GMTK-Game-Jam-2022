@@ -13,7 +13,7 @@ public class DamageEnemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.transform.TryGetComponent(out EnemyController EC))
+        if (other.transform.parent.TryGetComponent(out EnemyController EC))
         {
             EC.Health -= playerController.damage;
             Debug.Log("Damaged an enemy");

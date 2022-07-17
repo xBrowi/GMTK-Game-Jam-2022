@@ -7,6 +7,7 @@ public class EnemyController : MonoBehaviour
     public float maxHealth;
     public float Health;
     public float EnemySpeed;
+    public int wait1;
 
     public float minDist = 5;
     public float dist;
@@ -14,6 +15,7 @@ public class EnemyController : MonoBehaviour
     public GameObject head;
     public GameObject body;
     public GameObject torso;
+
 
     public Transform playerTransform;
 
@@ -58,6 +60,7 @@ public class EnemyController : MonoBehaviour
 
     public void Die ()
     {
-
+        Debug.Log(Health);
+        Destroy(this.gameObject);
     }
 }

@@ -28,4 +28,12 @@ public class EnemyBodyController : MonoBehaviour
     {
         enemyController.transform.GetChild(1).GetComponent<BoxCollider>().enabled = true;
     }
+
+    public void RunEnd ()
+    {
+        if (enemyController.animator.GetBool("isRunning") == true)
+        {
+            enemyController.animator.Play("Enemy_EnRun1");
+        }
+    }
 }

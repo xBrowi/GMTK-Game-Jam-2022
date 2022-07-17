@@ -40,7 +40,9 @@ public class EnemyChase : EnemyState
             Debug.Log("AAAaAa");
         }
 
-    wait++;
+
+        wait++;
+
     }
 
 }

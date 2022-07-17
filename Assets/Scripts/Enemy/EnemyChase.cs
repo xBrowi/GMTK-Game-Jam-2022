@@ -6,8 +6,6 @@ using UnityEngine.AI;
 public class EnemyChase : EnemyState
 {
     public NavMeshAgent navMeshAgent;
-    public Transform playerTransform;
-    public float minDist = 5;
     public EnemyChase(EnemyController enemyController) : base(enemyController)
     {
 
@@ -15,6 +13,9 @@ public class EnemyChase : EnemyState
 
     public override void OnStateEnter()
     {
+        enemyController.animator.SetBool("isRunning", true);
+
+        Debug.Log("chase enter");
     }
 
     public override void OnStateExit()
@@ -27,6 +28,13 @@ public class EnemyChase : EnemyState
         if (enemyController.Rigidbody.velocity.magnitude > enemyController.EnemySpeed)
         {
             enemyController.Rigidbody.velocity = enemyController.Rigidbody.velocity.normalized * enemyController.EnemySpeed;
+        }
+
+
+        if (enemyController.dist < enemyController.minDist)
+        {
+            enemyController.ChangeState(new EnemyAttack(enemyController));
+            Debug.Log("AAAaAa");
         }
     }
 }

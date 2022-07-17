@@ -8,9 +8,14 @@ public class EnemyController : MonoBehaviour
     public float Health;
     public float EnemySpeed;
 
+    public float minDist = 5;
+    public float dist;
+
     public GameObject head;
     public GameObject body;
     public GameObject torso;
+
+    public Transform playerTransform;
 
     private EnemyState currentState;
 
@@ -33,11 +38,15 @@ public class EnemyController : MonoBehaviour
         currentState = new EnemySpawn(this);
         currentState.OnStateEnter();
         Health = maxHealth;
+        playerTransform = GameObject.Find("Player").transform;
     }
 
     void Update()
     {
         currentState.OnStateUpdate();
+
+
+        dist = Vector3.Distance(playerTransform.position, transform.position);
     }
 
     public void ChangeState(EnemyState newState)

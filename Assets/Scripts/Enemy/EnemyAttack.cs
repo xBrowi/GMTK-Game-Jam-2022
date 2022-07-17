@@ -11,6 +11,8 @@ public class EnemyAttack : EnemyState
 
     public override void OnStateEnter()
     {
+        enemyController.animator.SetBool("isSwiping", true);
+        enemyController.animator.SetBool("isRunning", false);
     }
 
     public override void OnStateExit()
@@ -20,4 +22,6 @@ public class EnemyAttack : EnemyState
     public override void OnStateUpdate()
     {
     }
+
+    
 }

@@ -13,4 +13,14 @@ public class EnemyBodyController : MonoBehaviour
 
         enemyController.GetComponent<EnemyLookAtPlayer>().enabled = true;
     }
+
+    public void AttackAnimationFinish()
+    {
+        Debug.Log("test");
+
+        enemyController.animator.SetBool("isSwiping", false);
+
+            enemyController.ChangeState(new EnemyChase(enemyController));
+
+    }
 }

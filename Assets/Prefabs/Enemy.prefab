@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4653884414545801223}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 3.85, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -51,9 +51,12 @@ MonoBehaviour:
   maxHealth: 0
   Health: 0
   EnemySpeed: 4
+  minDist: 3
+  dist: 0
   head: {fileID: 1797553053926724484}
   body: {fileID: 8895866426117184595}
   torso: {fileID: 6817379746747622212}
+  playerTransform: {fileID: 0}
   animator: {fileID: 2379096904121793974}
   bodyCollider: {fileID: 7435175786540448978}
 --- !u!54 &5568121534816545711

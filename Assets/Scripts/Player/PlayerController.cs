@@ -267,4 +267,9 @@ public class PlayerController : MonoBehaviour
     {
         healthBarTransform.localScale = new Vector3(health / maxHealth, 1, 1);
     }
+
+    public void PlayUpgradeSound()
+    {
+        SoundBank.PlayAudioClip(SoundBank.GetInstance().playerUpgradeAudioClips, AudioSource);
+    }
 }

@@ -15,7 +15,38 @@ public class PowerupCollection : MonoBehaviour
     {
         PC = GameObject.Find("Player").GetComponent<PlayerController>();
     }
-    private void OnTriggerEnter(Collider other)
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == 7)
+        {
+            switch (collision.gameObject.tag)
+            {
+                case "speedPowerup":
+                    PC.maxSpeed += speedBonus;
+                    PC.accelleration += accelerationBonus;
+                    break;
+                case "jumpPowerup":
+                    PC.jumpForce += jumpBonus;
+
+                    break;
+                case "dashPowerup":
+                    PC.dashTime += dashBonus;
+                    break;
+                case "damagePowerup":
+                    PC.damage += damageBonus;
+                    break;
+                default:
+                    break;
+            }
+            PC.PlayUpgradeSound();
+
+            Destroy(collision.gameObject);
+        }
+    }
+
+
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == 7)
         {
@@ -41,5 +72,5 @@ public class PowerupCollection : MonoBehaviour
 
             Destroy(other.gameObject);
         }
-    }
+    }*/
 }

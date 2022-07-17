@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2516245681782102544}
   - component: {fileID: 5568121534816545708}
   - component: {fileID: 5568121534816545711}
+  - component: {fileID: 986595494}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   Health: 0
+  EnemySpeed: 4
   head: {fileID: 1797553053926724484}
   body: {fileID: 8895866426117184595}
   torso: {fileID: 6817379746747622212}
@@ -70,6 +72,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 64
   m_CollisionDetection: 0
+--- !u!114 &986595494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4653884414545801223}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc1c6104ce7674e49b532adb63c65a3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6817379746747622212
 GameObject:
   m_ObjectHideFlags: 0

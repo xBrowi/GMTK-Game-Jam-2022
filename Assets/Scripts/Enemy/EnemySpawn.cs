@@ -39,7 +39,8 @@ public class EnemySpawn : EnemyState
             enemyController.head.GetComponent<Collider>().enabled = false;
             enemyController.bodyCollider.enabled = true;
             enemyController.head.transform.SetParent(enemyController.torso.transform);
-            enemyController.Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
+            enemyController.Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+
 
             spawnAnimStarted = true;
         }

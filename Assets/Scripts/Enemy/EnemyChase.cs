@@ -19,12 +19,14 @@ public class EnemyChase : EnemyState
 
     public override void OnStateExit()
     {
-
-        navMeshAgent.enabled=false;
     }
 
     public override void OnStateUpdate()
     {
-        
+        enemyController.Rigidbody.AddRelativeForce(Vector3.forward*4, ForceMode.Force);
+        if (enemyController.Rigidbody.velocity.magnitude > enemyController.EnemySpeed)
+        {
+            enemyController.Rigidbody.velocity = enemyController.Rigidbody.velocity.normalized * enemyController.EnemySpeed;
+        }
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class EnemyChase : EnemyState
 {
+    public int wait = 0;
+
     public NavMeshAgent navMeshAgent;
     public EnemyChase(EnemyController enemyController) : base(enemyController)
     {
@@ -32,11 +34,13 @@ public class EnemyChase : EnemyState
         }
 
 
-        if (enemyController.dist < enemyController.minDist)
+        if (enemyController.dist < enemyController.minDist && wait > 5)
         {
             enemyController.ChangeState(new EnemyAttack(enemyController));
             Debug.Log("AAAaAa");
         }
 
+    wait++;
     }
+
 }

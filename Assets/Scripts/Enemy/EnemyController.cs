@@ -47,4 +47,8 @@ public class EnemyController : MonoBehaviour
         currentState.OnStateEnter();
     }
 
+    public void Die ()
+    {
+
+    }
 }

@@ -22,12 +22,15 @@ public class PlayerDashing : PlayerState
         dashTrail.GetComponent<TrailRenderer>().emitting = true;
         SoundBank.PlayAudioClip(SoundBank.GetInstance().playerDashAudioClips, playerController.AudioSource);
 
+        playerController.damageCollider.enabled = true;
 
     }
     public override void OnStateExit()
     {
         playerController.dashCooldown = playerController.dashCooldownMax;
         dashTrail.GetComponent<TrailRenderer>().emitting = false;
+
+        playerController.damageCollider.enabled = false;
 
     }
     public override void OnStateUpdate()

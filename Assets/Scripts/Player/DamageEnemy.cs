@@ -11,12 +11,16 @@ public class DamageEnemy : MonoBehaviour
         playerController = GameObject.Find("Player").GetComponent<PlayerController>(); ;
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.transform.TryGetComponent(out EnemyController EC))
         {
             EC.Health -= playerController.damage;
             Debug.Log("Damaged an enemy");
+            if (EC.Health <= 0)
+            {
+                EC.Die();
+            }
         }
     }
 }

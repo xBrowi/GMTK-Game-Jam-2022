@@ -15,6 +15,8 @@ public class PlayerController : MonoBehaviour
 
     public ForkliftIdleSoundController forkliftIdleSoundController;
 
+    public Transform healthBarTransform;
+
     // Player movement variables
     public float rotationSpeed = 0.1f;
     public float accelleration = 8f;
@@ -39,6 +41,11 @@ public class PlayerController : MonoBehaviour
 
     public float attackCooldownMax;
     public float damage;
+
+    public float maxHealth;
+
+    [HideInInspector]
+    public float health;
 
     [HideInInspector]
     public float dashCooldown = 0;
@@ -71,6 +78,9 @@ public class PlayerController : MonoBehaviour
         currentState = new PlayerDriving(this);
         currentState.OnStateEnter();
         damageCollider = GameObject.Find("DamageCollider").GetComponent<BoxCollider>();
+        healthBarTransform = GameObject.Find("HealthBar").transform;
+        health = maxHealth;
+        updateHeathBar();
     }
     void Update()
     {
@@ -171,9 +181,6 @@ public class PlayerController : MonoBehaviour
             jumpKeyWasPressed = true;
         }
 
-
-        transform.Rotate(new Vector3(0f, x * rotationSpeed, 0f));
-
     }
     void jump()
     {
@@ -188,6 +195,8 @@ public class PlayerController : MonoBehaviour
 
     void movementFixedUpdate()
     {
+        transform.Rotate(new Vector3(0f, x * rotationSpeed, 0f));
+
         if (jumpKeyWasPressed)
         {
             jump();
@@ -249,6 +258,12 @@ public class PlayerController : MonoBehaviour
 
     public void OnDamageAnimation()
     {
+        Debug.Log("DMG");
         damageCollider.enabled = true;
+    }
+
+    public void updateHeathBar ()
+    {
+        healthBarTransform.localScale = new Vector3(health / maxHealth, 1, 1);
     }
 }

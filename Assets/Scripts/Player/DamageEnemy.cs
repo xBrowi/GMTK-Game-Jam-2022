@@ -16,6 +16,7 @@ public class DamageEnemy : MonoBehaviour
         if (other.transform.TryGetComponent(out EnemyController EC))
         {
             EC.Health -= playerController.damage;
+            Debug.Log("Damaged an enemy");
         }
     }
 }

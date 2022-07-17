@@ -249,8 +249,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnDamageAnimation()
     {
-        
-        Debug.Log("DMG");
         damageCollider.enabled = true;
     }
 }

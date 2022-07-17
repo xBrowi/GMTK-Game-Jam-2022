@@ -1,0 +1,163 @@
+fileFormatVersion: 2
+guid: d558ad0cd840c6b47be5867f8171bbdd
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable:
+  - first:
+      74: -7853733199891700727
+    second: Annpuncer|AnnpuncerAction
+  - first:
+      74: -8392192993031377866
+    second: Annpuncer|ChrIdle
+  - first:
+      74: 801703233829463405
+    second: Annpuncer|ChrIdle.002
+  - first:
+      74: 2369859591287858237
+    second: Annpuncer|ChrSlam
+  - first:
+      74: -7535609479087474457
+    second: Annpuncer|ChrThrow
+  - first:
+      74: 57069462556610084
+    second: Annpuncer|ChrTurnInL
+  - first:
+      74: 7040847568076885722
+    second: Annpuncer|ChrTurnInR
+  - first:
+      74: -106503213657695440
+    second: Annpuncer|ChrTurnL
+  - first:
+      74: -1491916093579932765
+    second: Annpuncer|ChrTurnR
+  - first:
+      74: -3308206263134463702
+    second: Annpuncer|EnIdle
+  - first:
+      74: 1420000822197418124
+    second: Annpuncer|EnIdle.001
+  - first:
+      74: -4423204095542371094
+    second: Annpuncer|EnInAir
+  - first:
+      74: 4420060787854835471
+    second: Annpuncer|EnJump
+  - first:
+      74: -5908852891249038719
+    second: Annpuncer|EnLanding
+  - first:
+      74: -4764837725287769405
+    second: Annpuncer|EnRun
+  - first:
+      74: -7427178698734553740
+    second: Annpuncer|EnRun1
+  - first:
+      74: 7113813441898983215
+    second: Annpuncer|EnSpawn
+  - first:
+      74: 6540236043637734429
+    second: Annpuncer|EnSwipe
+  - first:
+      74: -4682619766393051329
+    second: Annpuncer|EnWalk
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

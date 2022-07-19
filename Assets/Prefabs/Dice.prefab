@@ -144,10 +144,10 @@ MonoBehaviour:
   back: {fileID: 3350451602484057882}
   enemyPrefab: {fileID: 5568121534816545708, guid: 6f5dba288c0de114fa6bae69b4221a99, type: 3}
   powerUps:
-  - {fileID: 5043023401059374378, guid: 00044062ae3017f4f8f64c34aa55db3f, type: 3}
-  - {fileID: 6170614499582389889, guid: 62945a831617b38408285f2ea00f2176, type: 3}
-  - {fileID: 5624894345580157485, guid: 03f91be25acd13846822690f3cf30975, type: 3}
-  - {fileID: 3832404176451334392, guid: 0fce93acaeaac9240b6b2fc728b3136a, type: 3}
+  - {fileID: 7368702972968366749, guid: 8be58a3806e27b14892c266cfbbbe1a2, type: 3}
+  - {fileID: 7368702972968366749, guid: d95777532a6c8bb4e87645c9c5bd98c6, type: 3}
+  - {fileID: 7368702972968366749, guid: 3dd95c9dd743715419e88c4835ac0ff2, type: 3}
+  - {fileID: 7368702972968366749, guid: 2ee043fcb048ebd41b7ec7f358702ba8, type: 3}
   stoppingAngularVelocity: 0.1
   stoppingVelocity: 0.1
   minEnemyFlingForce: 2

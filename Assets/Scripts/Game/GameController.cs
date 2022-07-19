@@ -38,6 +38,7 @@ public class GameController : MonoBehaviour
 
     private bool hasEnteredArena = false;
     private float timeLeftUntilNextWave;
+    private bool hasWon = false;
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +76,8 @@ public class GameController : MonoBehaviour
 
     private void SpawnWave(int wave)
     {
+        if (wave >= waveDefinitions.Count) return;
+
         timeLeftUntilNextWave = waveDefinitions[wave].timeUntilNextWave;
         musicController.SetIntensity(waveDefinitions[wave].waveIntensity);
         audienceController.SetHype(waveDefinitions[wave].waveIntensity);
@@ -85,6 +88,7 @@ public class GameController : MonoBehaviour
 
         if (wave == waveDefinitions.Count - 1)
         {
+            hasWon = true;
             endScreenImage.sprite = winSprite;
             endScreenImage.enabled = true;
             healthBar.SetActive(false);
@@ -102,6 +106,8 @@ public class GameController : MonoBehaviour
 
     public void Lose()
     {
+        if (hasWon) return;
+
         endScreenImage.sprite = loseSprite;
         endScreenImage.enabled = true;
         healthBar.SetActive(false);

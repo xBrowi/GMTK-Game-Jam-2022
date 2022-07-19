@@ -4,73 +4,34 @@ using UnityEngine;
 
 public class PowerupCollection : MonoBehaviour
 {
-    public float speedBonus;
-    public float jumpBonus;
-    public float accelerationBonus;
-    public float dashBonus;
-    public float damageBonus;
+
 
     private PlayerController PC;
     private void Start()
     {
-        PC = GameObject.Find("Player").GetComponent<PlayerController>();
+        PC = GetComponent<PlayerController>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 7)
+        Debug.Log("Collision with " + collision.gameObject.layer);
+        if (collision.gameObject.layer == 7) // PowerUp Layer
         {
-            switch (collision.gameObject.tag)
-            {
-                case "speedPowerup":
-                    PC.maxSpeed += speedBonus;
-                    PC.accelleration += accelerationBonus;
-                    break;
-                case "jumpPowerup":
-                    PC.jumpForce += jumpBonus;
+            Debug.Log("Collected Powerup! " + collision.gameObject.name);
 
-                    break;
-                case "dashPowerup":
-                    PC.dashTime += dashBonus;
-                    break;
-                case "damagePowerup":
-                    PC.damage += damageBonus;
-                    break;
-                default:
-                    break;
-            }
+            PowerUpController puc = collision.gameObject.GetComponent<PowerUpController>();
+
+            PC.maxSpeed += puc.speedBonus;
+            PC.accelleration += puc.accelerationBonus;
+            PC.jumpForce += puc.jumpBonus;
+            PC.dashTime += puc.dashBonus;
+            PC.damage += puc.damageBonus;
+
             PC.PlayUpgradeSound();
-
             Destroy(collision.gameObject);
         }
+
+
+        
     }
-
-
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 7)
-        {
-            switch (other.tag)
-            {
-                case "speedPowerup":
-                    PC.maxSpeed += speedBonus;
-                    PC.accelleration += accelerationBonus;
-                    break;
-                case "jumpPowerup":
-                    PC.jumpForce += jumpBonus;
-
-                    break;
-                case "dashPowerup":
-                    PC.dashTime += dashBonus;
-                    break;
-                case "damagePowerup":
-                    PC.damage += damageBonus;
-                    break;
-                default:
-                    break;
-            }
-
-            Destroy(other.gameObject);
-        }
-    }*/
 }

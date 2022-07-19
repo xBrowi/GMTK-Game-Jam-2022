@@ -49,12 +49,19 @@ public class CannonController : MonoBehaviour
 
                 DiceController dc = Instantiate(dicePrefab);
                 dc.transform.position = Spawnpoint.position;
-                if (nrOfDiceLoaded <= 0) dc.IsPowerUp = true;
+                if (nrOfDiceLoaded <= 0)
+                {
+                    dc.IsPowerUp = true;
+                    nrOfPowerUpsLoaded--;
+                }
+                else
+                {
+                    nrOfDiceLoaded--;
+                }
                 
                 dc.Launch(new Vector3(Random.Range(minLaunchVelocityX, maxLaunchVelocityX), Random.Range(minLaunchVelocityY, maxLaunchVelocityY), Random.Range(minLaunchVelocityZ, maxLaunchVelocityZ)));
 
                 chargeTime = 0;
-                nrOfDiceLoaded--;
                 isCharging = false;
             }
         }

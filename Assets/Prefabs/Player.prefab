@@ -1309,14 +1309,14 @@ MonoBehaviour:
   maxSpeed: 20
   sidewaysDrag: 0.9
   forwardsDrag: 0.95
-  jumpForce: 8
+  jumpForce: 6
   wheelRotationSpeed: 50
   groundCheck: {fileID: 7559422991892549514}
   groundMask:
     serializedVersion: 2
     m_Bits: 64
   dashCooldownMax: 2
-  dashTime: 0.3
+  dashTime: 0.15
   dashSpeed: 50
   attackCooldownMax: 0.75
   damage: 20
@@ -1340,11 +1340,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d23618eaa904d488a2a0f67af62d93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedBonus: 400
-  jumpBonus: 100
-  accelerationBonus: 20
-  dashBonus: 0
-  damageBonus: 0
 --- !u!82 &2282249632333738796
 AudioSource:
   m_ObjectHideFlags: 0

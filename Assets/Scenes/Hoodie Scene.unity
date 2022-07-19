@@ -716,7 +716,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8639798, y: 1}
+    m_SensorSize: {x: 1.8723135, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2595,7 +2595,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8639798, y: 1}
+    m_SensorSize: {x: 1.8723135, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -4024,7 +4024,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8639798, y: 1}
+    m_SensorSize: {x: 1.8723135, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -18615,7 +18615,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8639798, y: 1}
+    m_SensorSize: {x: 1.8723135, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -20226,6 +20226,38 @@ PrefabInstance:
       propertyPath: audienceController
       value: 
       objectReference: {fileID: 2128925363}
+    - target: {fileID: 5240873582332148449, guid: 01211f8857ed1ef45ad6057cbad33040, type: 3}
+      propertyPath: waveDefinitions.Array.data[2].nrOfRewardPowerUpsLeft
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5240873582332148449, guid: 01211f8857ed1ef45ad6057cbad33040, type: 3}
+      propertyPath: waveDefinitions.Array.data[3].nrOfRewardPowerUpsLeft
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5240873582332148449, guid: 01211f8857ed1ef45ad6057cbad33040, type: 3}
+      propertyPath: waveDefinitions.Array.data[4].nrOfRewardPowerUpsLeft
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5240873582332148449, guid: 01211f8857ed1ef45ad6057cbad33040, type: 3}
+      propertyPath: waveDefinitions.Array.data[5].nrOfRewardPowerUpsLeft
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5240873582332148449, guid: 01211f8857ed1ef45ad6057cbad33040, type: 3}
+      propertyPath: waveDefinitions.Array.data[1].nrOfRewardPowerUpsRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5240873582332148449, guid: 01211f8857ed1ef45ad6057cbad33040, type: 3}
+      propertyPath: waveDefinitions.Array.data[3].nrOfRewardPowerUpsRight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5240873582332148449, guid: 01211f8857ed1ef45ad6057cbad33040, type: 3}
+      propertyPath: waveDefinitions.Array.data[4].nrOfRewardPowerUpsRight
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5240873582332148449, guid: 01211f8857ed1ef45ad6057cbad33040, type: 3}
+      propertyPath: waveDefinitions.Array.data[5].nrOfRewardPowerUpsRight
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01211f8857ed1ef45ad6057cbad33040, type: 3}
 --- !u!1001 &2493578285461306552
@@ -20540,7 +20572,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 45.70819, y: 49.799988}
+  m_AnchoredPosition: {x: 45.708252, y: 49.799988}
   m_SizeDelta: {x: 344.3049, y: 29.08429}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &6157837698692023877
